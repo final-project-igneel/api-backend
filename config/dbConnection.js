@@ -1,11 +1,7 @@
 const mysql      = require('mysql2');
-const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '948|_|$364',
-  database : 'final_project'
-});
- 
+
+var connection = mysql.createConnection({host: "SG-FinalIgneel-987-master.servers.mongodirector.com", user: 'root', password: 'qQ1!qQ1!qQ1!', database: 'final_igneel', port: 3306});
+
 const dbConnection = connection.connect(err => {
     if (err) {
       console.error('error connecting: ' + err.stack);

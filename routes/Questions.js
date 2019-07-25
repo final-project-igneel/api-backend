@@ -4,7 +4,7 @@ var router = express.Router();
 let connection = require("../config/dbConnection");
 
 router.get("/Questions", function(req, res, next) {
-  connection.query("SELECT * FROM questions", (error, rows) => {
+  connection.query("SELECT * FROM Questions", (error, rows) => {
     if (error) {
       console.log(error);
     } else {
