@@ -1,8 +1,16 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-router.get('/me', function(req, res, next) {
-  res.send(`Hello`);
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.send({
+    message: "Welcome to FRAQS API"
+  });
 });
 
-module.exports = router;
+module.exports = {
+  Root: router,
+  User: require("./UserRoutes"),
+  Thread: require("./ThreadRouters"),
+  Comment: require("./CommentRouters.js")
+}
