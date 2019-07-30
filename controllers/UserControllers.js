@@ -17,10 +17,11 @@ const userAuthentication = async (req, res) => {
         message: "users not found"
       });
     }
+    
+    const match = bcrypt.compareSync(req.body.password, users.password);
+    
 
-    const compare = bcrypt.compareSync(req.body.password, user.password);
-
-    if (!compare) {
+    if (!match) {
       return res.status(401).send({
         message: "Password doesn't match"
       });
@@ -28,8 +29,8 @@ const userAuthentication = async (req, res) => {
 
     const token = jwt.sign(
       {
-        id: users.id,
-        email: users.email
+        // id: users.id,
+        users
       },
       JWT_SECRET
     );
