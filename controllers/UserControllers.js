@@ -17,9 +17,8 @@ const userAuthentication = async (req, res) => {
         message: "users not found"
       });
     }
-    
+
     const match = bcrypt.compareSync(req.body.password, users.password);
-    
 
     if (!match) {
       return res.status(401).send({
@@ -31,7 +30,8 @@ const userAuthentication = async (req, res) => {
       {
         users
       },
-      JWT_SECRET
+      JWT_SECRET,
+      { expiresIn: "2h" }
     );
 
     return res.send({
@@ -121,7 +121,7 @@ const updateUser = async (req, res) => {
     res.json({
       message: "user berhasil diupdate",
       editUser
-    })
+    });
   } catch (error) {
     console.log(error);
   }

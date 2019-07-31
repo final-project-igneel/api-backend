@@ -1,9 +1,7 @@
 const { thread, comment} = require("../src/api/db/models");
 
 const getThread = function (req, res) {
-   thread.findAll({
-      include: [{ model: comment, required: true }]
-    })
+   thread.findAll({})
     .then(data => res.send(data))
     .catch(error => console.log(error))
 };
