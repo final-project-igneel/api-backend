@@ -108,7 +108,6 @@ const updateUser = async (req, res) => {
             return res.send({ message: "User not found" });
         }
 
-<<<<<<< HEAD
         editUser.update(
             { name: req.body.name },
             {
@@ -125,15 +124,6 @@ const updateUser = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-=======
-    res.json({
-      message: "user berhasil diupdate",
-      editUser
-    });
-  } catch (error) {
-    console.log(error);
-  }
->>>>>>> a4e274487e8c9af622272f56e977a2260434c9bc
 };
 
 const getAllUser = function(req, res, next) {
