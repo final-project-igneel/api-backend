@@ -1,69 +1,103 @@
-const { thread, comment} = require("../src/api/db/models");
+const { thread, comment } = require("../src/api/db/models");
 
-const getThread = function (req, res) {
-   thread.findAll({
-      include: [{ model: comment, required: true }]
-    })
+const getThread = function(req, res) {
+  thread
+    .findAll()
     .then(data => res.send(data))
-    .catch(error => console.log(error))
+    .catch(error => console.log(error));
 };
 
-const createThread = function (req, res) {
+const getOneThread = function(req, res) {
+  thread
+    .findOne({
+      where: {
+        id: `${req.params.id}`
+      }
+    })
+    .then(data => {
+      res.status(200).send({
+        data
+      });
+    })
+    .catch(error => {
+      res.status(500).send({
+        error
+      });
+    });
+};
+
+const createThread = function(req, res) {
   thread.create(req.body)
-  .then(data => {
-    console.log(data);
-    res.send(data);
-  })
-  .catch(error => {
-    console.log(error);
-  });
+    .then(data => {
+      console.log(data);
+      res.send(data);
+    })
+    .catch(error => {
+      console.log(error);
+    });
 };
 
-const editThread = function (req, res) {
+const updateThreadLike = function(req, res) {
   thread
-  .update({
-    where: {
-      id: `${req.params.id}`
-    }
-  })
-  .then(data => {
-    res.status(201).send({
-      message: "Updated!",
-      data
-    });
-  })
-  .catch(error => {
-    res.status(500).send({
-      message: "Thread Failed to Update!",
-      error
-    });
-  });
+    .update(
+      { likedThread: req.body.userId },
+      { where: { id: req.params.id } }
+    )
+    .then(data => {
+      console.log(data)
+    })
+    .catch(function(error) {
+      console.log(error)
+    })
 };
 
-const deleteThread = function (req, res) {
+const editThread = function(req, res) {
   thread
-  .destroy({
-    where: {
-      id: `${req.params.id}`
-    }
-  })
-  .then(data => {
-    res.status(201).send({
-      message: "Deleted!",
-      data
+    .update({
+      where: {
+        id: `${req.params.id}`
+      }
+    })
+    .then(data => {
+      res.status(201).send({
+        message: "Updated!",
+        data
+      });
+    })
+    .catch(error => {
+      res.status(500).send({
+        message: "Thread Failed to Update!",
+        error
+      });
     });
-  })
-  .catch(error => {
-    res.status(500).send({
-      message: "Thread Failed to Delete!",
-      error
+};
+
+const deleteThread = function(req, res) {
+  thread
+    .destroy({
+      where: {
+        id: `${req.params.id}`
+      }
+    })
+    .then(data => {
+      res.status(201).send({
+        message: "Deleted!",
+        data
+      });
+    })
+    .catch(error => {
+      res.status(500).send({
+        message: "Thread Failed to Delete!",
+        error
+      });
     });
-  });
 };
 
 module.exports = {
   getThread,
+  getOneThread,
   createThread,
+  updateThreadLike,
   editThread,
   deleteThread
-}
+};
