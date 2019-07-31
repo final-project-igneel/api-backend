@@ -42,9 +42,9 @@ const userAuthentication = async (req, res) => {
     });
   } catch (error) {
     res.status(500).send({
-      message: "There is an internal server error"
+      message: "There is an internal server error when giving Authentication to user",
+      error
     });
-    throw new Error(error);
   }
 };
 
@@ -80,9 +80,9 @@ const userRegistration = async (req, res) => {
     });
   } catch (error) {
     res.status(500).send({
-      message: "There is an internal server error"
+      message: "There is an internal server error at user registration",
+      error
     });
-    throw new Error(error);
   }
 };
 
@@ -95,9 +95,9 @@ const deleteUser = async (req, res) => {
     });
   } catch (error) {
     res.send({
-      message: "Failed to delete User"
+      message: "Failed to delete User",
+      error
     });
-    throw new Error(error);
   }
 };
 
