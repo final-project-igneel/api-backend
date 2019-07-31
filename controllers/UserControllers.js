@@ -26,7 +26,6 @@ const userAuthentication = async (req, res) => {
             });
         }
 
-<<<<<<< HEAD
         const token = jwt.sign(
             {
                 users
@@ -46,28 +45,6 @@ const userAuthentication = async (req, res) => {
         });
         throw new Error(error);
     }
-=======
-    const token = jwt.sign(
-      {
-        users
-      },
-      JWT_SECRET,
-      { expiresIn: "2h" }
-    );
-
-    return res.send({
-      message: "Successfully signed in",
-      data: {
-        token
-      }
-    });
-  } catch (error) {
-    res.status(500).send({
-      message: "There is an internal server error when giving Authentication to user",
-      error
-    });
-  }
->>>>>>> d828d0b4b15633aff26dafb350a3c845dd37fcf9
 };
 
 const userRegistration = async (req, res) => {
@@ -80,7 +57,6 @@ const userRegistration = async (req, res) => {
             }
         });
 
-<<<<<<< HEAD
         if (users !== null) {
             return res.status(401).send({
                 message: "users already registered"
@@ -122,43 +98,6 @@ const deleteUser = async (req, res) => {
         });
         throw new Error(error);
     }
-=======
-    const salt = bcrypt.genSaltSync();
-    const hash = bcrypt.hashSync(password, salt);
-
-    const create = await user.create({
-      firstName,
-      lastName,
-      email,
-      password: hash
-    });
-
-    return res.status(201).send({
-      message: "successfully registered in",
-      create
-    });
-  } catch (error) {
-    res.status(500).send({
-      message: "There is an internal server error at user registration",
-      error
-    });
-  }
-};
-
-const deleteUser = async (req, res) => {
-  try {
-    const remove = await user.findByPk(req.params.id);
-    remove.delete();
-    res.send({
-      message: "User successfully deleted!"
-    });
-  } catch (error) {
-    res.send({
-      message: "Failed to delete User",
-      error
-    });
-  }
->>>>>>> d828d0b4b15633aff26dafb350a3c845dd37fcf9
 };
 
 const updateUser = async (req, res) => {

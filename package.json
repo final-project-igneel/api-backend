@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
     "name": "api-backend",
     "version": "0.0.0",
     "private": true,
@@ -29,34 +28,4 @@
         "node": "12.6.0",
         "npm": "6.9.0"
     }
-=======
-  "name": "api-backend",
-  "version": "0.0.0",
-  "private": true,
-  "engines": {
-    "node": "12.x"
-  },
-  "scripts": {
-    "start": "node ./bin/index.js && sequelize db:create && sequelize db:migrate",
-    "dev": "nodemon ./bin/index.js"
-  },
-  "dependencies": {
-    "bcrypt": "^3.0.6",
-    "body-parser": "^1.19.0",
-    "cookie-parser": "~1.4.4",
-    "cors": "^2.8.5",
-    "debug": "~2.6.9",
-    "dotenv": "^8.0.0",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "jsonwebtoken": "^8.5.1",
-    "morgan": "~1.9.1",
-    "mysql2": "^1.6.5",
-    "sequelize": "^5.11.0",
-    "sequelize-cli": "^5.5.0"
-  },
-  "devDependencies": {
-    "nodemon": "^1.19.1"
-  }
->>>>>>> d828d0b4b15633aff26dafb350a3c845dd37fcf9
 }
