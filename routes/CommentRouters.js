@@ -7,7 +7,7 @@ const {
   deleteComment
 } = require("../controllers").Comments
 
-router.get("/", getComment)
+router.get("/:threadid", getComment)
 router.post("/create", createComment);
 router.delete("/delete/:id", deleteComment)
 

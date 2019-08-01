@@ -1,9 +1,11 @@
 const { thread, comment } = require("../src/api/db/models");
+const db = require("../src/api/db/models/index");
+const sequelize = require("sequelize");
 
 const getThread = function(req, res) {
   thread
     .findAll()
-    .then(data => res.send(data))
+    .then(data => res.status(200).send(data))
     .catch(error => console.log(error));
 };
 
@@ -27,7 +29,8 @@ const getOneThread = function(req, res) {
 };
 
 const createThread = function(req, res) {
-  thread.create(req.body)
+  thread
+    .create(req.body)
     .then(data => {
       console.log(data);
       res.send(data);
@@ -38,17 +41,22 @@ const createThread = function(req, res) {
 };
 
 const updateThreadLike = function(req, res) {
-  thread
-    .update(
-      { likedThread: req.body.userId },
-      { where: { id: req.params.id } }
-    )
-    .then(data => {
-      console.log(data)
-    })
-    .catch(function(error) {
-      console.log(error)
-    })
+  thread.sequelize
+    .query(`SELECT likedThread FROM threads where id=${req.body.questionId}`)
+    .then(questionData => {
+      let arrayOfLikers = questionData[0][0].likedThread.split(",");
+      thread
+        .update(
+          { likedThread: req.body.usersId },
+          { where: { id: req.params.id } }
+        )
+        .then(data => {
+          console.log(data);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    });
 };
 
 const editThread = function(req, res) {
