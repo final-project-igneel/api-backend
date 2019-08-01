@@ -3,9 +3,8 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "node ./bin/index.js",
-        "dev": "nodemon ./bin/index.js",
-        "heroku-postbuild": "db:create && db:migrate"
+        "start": "node ./bin/index.js && sequelize db:create && sequelize db:migrate",
+        "dev": "nodemon ./bin/index.js"
     },
     "dependencies": {
         "bcrypt": "^3.0.6",
