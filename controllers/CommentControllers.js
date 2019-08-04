@@ -1,33 +1,25 @@
 const { comment, user } = require("../src/api/db/models");
 
 const getComment = function(req, res) {
-  comment.sequelize
-    .query(
-      `select comment from users as u, comments as c where u.id=c.userid and threadid=${req.params.threadid};`
-    )
-    .then(commentData => {
-      // res.status(200).send(commentData)
-      res.send(commentData[0])
+  comment
+    .findAll({
+      include: [
+        {
+          model: user
+        }
+      ],
+      order: [["id", "ASC"]]
     })
-    .catch(function(error) {
-      console.log(error);
+    .then(function(commentData) {
+      // console.log(commentData);
+      res.status(200).json({
+        message: "ini data dari user dan komennya",
+        commentData
+      });
+    })
+    .catch(function(err) {
+      res.status(500).send(err);
     });
-
-  // user
-  //   .findAll({
-  //     include: [{
-  //       model: comment,
-  //       where: { threadid: req.params.threadid }
-  //     }]
-  //   })
-  //   .then(function(commentData) {
-  //     console.log(commentData);
-  //   })
-  //   .catch(function(err) {  
-  //     res.status(500).send(err)
-  // });
-
-
 };
 
 const createComment = function(req, res) {

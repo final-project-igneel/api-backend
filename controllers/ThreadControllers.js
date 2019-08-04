@@ -4,7 +4,9 @@ const sequelize = require("sequelize");
 
 const getThread = function(req, res) {
   thread
-    .findAll()
+    .findAll({
+      order: [["id", "ASC"]]
+    })
     .then(data => res.status(200).send(data))
     .catch(error => console.log(error));
 };
