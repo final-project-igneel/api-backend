@@ -20,7 +20,7 @@ app.use(cors())
 
 const Routes = require("./routes")
 
-app.use('/api-dashboard', Routes.Root);
+app.use('/', Routes.Root);
 app.use('/users', Routes.User);
 app.use('/threads', Routes.Thread);
 app.use('/comments', Routes.Comment);
