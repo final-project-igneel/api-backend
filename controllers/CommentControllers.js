@@ -11,7 +11,6 @@ const getComment = function(req, res) {
       order: [["id", "ASC"]]
     })
     .then(function(commentData) {
-      // console.log(commentData);
       res.status(200).json({
         message: "ini data dari user dan komennya",
         commentData
@@ -26,7 +25,6 @@ const createComment = function(req, res) {
   comment
     .create(req.body)
     .then(data => {
-      console.log(data);
       res.send(data);
     })
     .catch(error => {

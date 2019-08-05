@@ -5,7 +5,7 @@ const sequelize = require("sequelize");
 const getThread = function(req, res) {
   thread
     .findAll({
-      order: [["id", "ASC"]]
+      order: [["id", "DESC"]]
     })
     .then(data => res.status(200).send(data))
     .catch(error => console.log(error));
@@ -34,7 +34,6 @@ const createThread = function(req, res) {
   thread
     .create(req.body)
     .then(data => {
-      console.log(data);
       res.send(data);
     })
     .catch(error => {
@@ -53,7 +52,7 @@ const updateThreadLike = function(req, res) {
           { where: { id: req.params.id } }
         )
         .then(data => {
-          console.log(data);
+          res.send(data)
         })
         .catch(function(error) {
           console.log(error);
