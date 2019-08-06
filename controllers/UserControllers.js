@@ -38,7 +38,6 @@ const userAuthentication = async (req, res) => {
             data: {
                 token,
             },
-            users
         });
     } catch (error) {
         res.status(500).send({
