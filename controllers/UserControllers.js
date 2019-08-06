@@ -41,9 +41,9 @@ const userAuthentication = async (req, res) => {
         });
     } catch (error) {
         res.status(500).send({
-            message: "There is an internal server error"
+            message: "There is an internal server error",
+            error
         });
-        throw new Error(error);
     }
 };
 
@@ -79,24 +79,9 @@ const userRegistration = async (req, res) => {
         });
     } catch (error) {
         res.status(500).send({
-            message: "There is an internal server error"
+            message: "There is an internal server error",
+            error
         });
-        throw new Error(error);
-    }
-};
-
-const deleteUser = async (req, res) => {
-    try {
-        const remove = await user.findByPk(req.params.id);
-        remove.delete();
-        res.send({
-            message: "User successfully deleted!"
-        });
-    } catch (error) {
-        res.send({
-            message: "Failed to delete User"
-        });
-        throw new Error(error);
     }
 };
 
@@ -149,7 +134,6 @@ const getAllUser = function(req, res, next) {
 module.exports = {
     userAuthentication,
     userRegistration,
-    deleteUser,
     updateUser,
     getAllUser
 };

@@ -36,9 +36,9 @@ const isAuthorized = async (req, res, next) => {
         next();
     } catch (error) {
         res.status(401).send({
-            message: "Token error"
+            message: "Token error",
+            error
         });
-        throw new Error(error);
     }
 };
 
