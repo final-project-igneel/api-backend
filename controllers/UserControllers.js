@@ -36,8 +36,8 @@ const userAuthentication = async (req, res) => {
         return res.send({
             message: "Successfully signed in",
             data: {
-                token,
-            },
+                token
+            }
         });
     } catch (error) {
         res.status(500).send({
