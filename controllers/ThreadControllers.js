@@ -62,11 +62,16 @@ const updateThreadLike = function(req, res) {
 
 const editThread = function(req, res) {
   thread
-    .update({
-      where: {
-        id: `${req.params.id}`
+    .update(
+      {
+        title: req.body.newTitle
+      },
+      {
+        where: {
+          id: req.params.id
+        }
       }
-    })
+    )
     .then(data => {
       res.status(201).send({
         message: "Updated!",
