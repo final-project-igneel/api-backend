@@ -22,7 +22,8 @@ const userAuthentication = async (req, res) => {
 
         if (!compare) {
             return res.status(401).send({
-                message: "Password doesn't match"
+                message: "Password doesn't match",
+                status: 401
             });
         }
 
