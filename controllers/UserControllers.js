@@ -29,7 +29,7 @@ const userAuthentication = async (req, res) => {
 
     const token = jwt.sign(
       {
-        users
+        id : users.id
       },
       JWT_SECRET
     );
@@ -105,24 +105,6 @@ const updateUser = async (req, res) => {
         }
       }
     );
-
-//     const tokenGenerator = new TokenGenerator("a", "a", {
-//       algorithm: "HS256",
-//       keyid: "1",
-//       noTimestamp: false,
-//     });
-//     token = tokenGenerator.sign(
-//       { firstName: "something" },
-//       { audience: "myaud", issuer: "myissuer", jwtid: "1", subject: "user" }
-//     );
-//     setTimeout(function() {
-//       token2 = tokenGenerator.refresh(token, {
-//         verify: { audience: "myaud", issuer: "myissuer" },
-//         jwtid: "2"
-//       });
-//       console.log(jwt.decode(token, { complete: true }));
-//       console.log(jwt.decode(token2, { complete: true }));
-//     }, 3000);
 
     res.json({
       message: "user berhasil diupdate",
