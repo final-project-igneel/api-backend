@@ -4,7 +4,8 @@ const PhoneCategory = function(req, res) {
   thread
     .findAll({
      where: {
-      category: 'phone'
+      category: 'phone',
+      order: [["id", "DESC"]]
      }
     })
     .then(data => res.send(data))
@@ -19,7 +20,8 @@ const LaptopCategory = function(req, res) {
     .findAll({
       where: {
         category: 'laptop'
-       }
+       },
+      order: [["id", "DESC"]]
     })
     .then(data => res.send(data))
     .catch(error => res.send(error));
@@ -30,7 +32,8 @@ const ComputerCategory = function(req, res) {
     .findAll({
       where: {
         category: 'computer'
-       }
+       },
+      order: [["id", "DESC"]]
     })
     .then(data => res.send(data))
     .catch(error => res.send(error));
