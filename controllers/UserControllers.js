@@ -1,7 +1,7 @@
 const { user, thread, comment } = require("../src/api/db/models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const TokenGenerator = require("../helpers/token-generator");
+// const TokenGenerator = require("../helpers/token-generator");
 
 const { JWT_SECRET } = process.env;
 
@@ -124,14 +124,14 @@ const updateUser = async (req, res) => {
 //       console.log(jwt.decode(token2, { complete: true }));
 //     }, 3000);
 
-//     res.json({
-//       message: "user berhasil diupdate",
-//       editUser
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+    res.json({
+      message: "user berhasil diupdate",
+      editUser
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const getAllUser = function(req, res, next) {
   user
