@@ -1,11 +1,14 @@
-const { thread, comment } = require("../src/api/db/models");
+const { thread, comment, user } = require("../src/api/db/models");
 const db = require("../src/api/db/models/index");
 const sequelize = require("sequelize");
 
 const getThread = function(req, res) {
   thread
     .findAll({
-      order: [["id", "DESC"]]
+      order: [["id", "DESC"]],
+      includes: {
+        model: [user]
+      }
     })
     .then(data => res.status(200).send(data))
     .catch(error => console.log(error));
@@ -52,7 +55,7 @@ const updateThreadLike = function(req, res) {
           { where: { id: req.params.id } }
         )
         .then(data => {
-          res.send(data)
+          res.send(data);
         })
         .catch(function(error) {
           console.log(error);
