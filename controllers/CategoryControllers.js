@@ -3,24 +3,26 @@ const { thread } = require("../src/api/db/models");
 const PhoneCategory = function(req, res) {
   thread
     .findAll({
-     where: {
-      category: 'phone',
+      where: {
+        category: "phone"
+      },
       order: [["id", "DESC"]]
-     }
     })
     .then(data => res.send(data))
-    .catch(error => res.send({
-      message: "Data phone not found",
-      error
-    }));
+    .catch(error =>
+      res.send({
+        message: "Data phone not found",
+        error
+      })
+    );
 };
 
 const LaptopCategory = function(req, res) {
   thread
     .findAll({
       where: {
-        category: 'laptop'
-       },
+        category: "laptop"
+      },
       order: [["id", "DESC"]]
     })
     .then(data => res.send(data))
@@ -31,8 +33,8 @@ const ComputerCategory = function(req, res) {
   thread
     .findAll({
       where: {
-        category: 'computer'
-       },
+        category: "computer"
+      },
       order: [["id", "DESC"]]
     })
     .then(data => res.send(data))
